@@ -1,0 +1,23 @@
+{
+  "name": "YouTube™ Redirector",
+  "version": "1.1.0",
+  "description": "Automatically redirectes loged in users to the subscriptions page.",
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "page_action" :
+  {
+    "default_icon" : "off-48.png",
+    "default_title" : "YouTube Redirector",
+	  "default_popup" : "popup.html"
+  },
+  "icons": {
+    "48": "icon-48.png",
+    "128": "icon-128.png" },
+  "permissions" : [
+    "tabs",
+    "*://*.youtube.com/*"
+  ],
+  "homepage_url": "http://mrkannah.com/tools.phtml",
+  "manifest_version": 2
+}

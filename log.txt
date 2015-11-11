@@ -1,0 +1,25 @@
+===========================================================
+=                        Change Log                       =
+===========================================================
+Version 1.1.0
+---------------
+-Fixed the plugin not working with the new youtube
+-Fixed the toggle button not working (not adding listeners dynamically)
+-Separated the script from the extension configuration code
+-Removed Thankyou page for when the extension is installed
+
+Version 1.0.3
+---------------
+-Fixed issue with displaying change log
+
+Version 1.0.2
+---------------
+-Mac OS UI bug fix
+
+Version 1.0.1
+---------------
+-Change log page added
+
+Version 1.0.0
+---------------
+-Official release
