@@ -2,16 +2,14 @@ function checkForValidUrl(tabId, changeInfo, tab) {
 	localStorage.setItem('id',tabId);
 	loged = parseInt(localStorage.getItem('loged'));
 	if(loged == 0){
-		chrome.pageAction.setIcon({tabId: tab.id, path: 'off-48.png'});
+		chrome.pageAction.setIcon({tabId: tab.id, path: 'icons/off-48.png'});
 	}
 	else if(loged == 1){
-		chrome.pageAction.setIcon({tabId: tab.id, path: 'on-48.png'});
+		chrome.pageAction.setIcon({tabId: tab.id, path: 'icons/on-48.png'});
 		if(tab.url.length < 25){
-			chrome.tabs.executeScript(tab.id, {file: 'jquery.js'}, function() {
-				chrome.tabs.executeScript(tab.id, {file: 'script.js'}, function() {
-					console.log('Successfully injected script into the page');
-				});
-			});
+      chrome.tabs.executeScript(tab.id, {file: 'script.js'}, function() {
+        console.log('Successfully injected script into the page');
+      });
 		}
 	}
   if (tab.url.indexOf('youtube') >= 0) {
