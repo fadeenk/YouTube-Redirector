@@ -58,7 +58,7 @@ function checkForValidUrl(tabId, changeInfo, tab) {
     chrome.pageAction.show(tabId);
     if (featureEnabled && isYoutube(tab)) {
       if(tab.url.length < 25){
-        chrome.tabs.executeScript(tab.id, {file: 'script.js'}, function() {
+        chrome.tabs.executeScript(tab.id, {file: 'script.js', runAt: 'document_end'}, function() {
           console.log('Successfully injected script into the page');
         });
       }
