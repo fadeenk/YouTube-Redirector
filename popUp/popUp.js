@@ -7,6 +7,8 @@ var BGPage = chrome.extension.getBackgroundPage();
 var parent = document.querySelector('.toggle-btn');
 var checkbox = parent.querySelector('input.cb-value');
 
+BGPage.ga('send', 'pageview', '/popUp.html');
+
 checkbox.checked = BGPage.featureEnabled;
 updateButtonStyles();
 
@@ -14,6 +16,7 @@ document.querySelector('.cb-value').addEventListener('click', clickHandler);
 
 function clickHandler() {
   updateButtonStyles();
+  BGPage.ga('send', 'event', 'checkbox', 'clicked', checkbox.checked ? 'on' : 'off');
   BGPage.saveChanges({featureEnabled: checkbox.checked});
 }
 
