@@ -3,7 +3,10 @@
   "version": "1.1.0",
   "description": "Automatically redirects logged in users to the subscriptions page.",
   "background": {
-    "scripts": ["background.js"]
+    "scripts": [
+      "scripts/raven.min.js",
+      "background.js"
+    ]
   },
   "page_action" :
   {

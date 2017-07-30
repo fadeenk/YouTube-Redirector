@@ -1,3 +1,7 @@
+Raven.config('https://03b6b508c625428f842368e57c29e108@sentry.io/197359', {
+  release: chrome.app.getDetails().version,
+}).install();
+
 var BGPage = chrome.extension.getBackgroundPage();
 
 var parent = document.querySelector('.toggle-btn');
