@@ -8,6 +8,10 @@ body {
   left: 10px;
   position: relative;
 }
+/*
+Toggle button is the work of Nikhil Krishnan
+https://codepen.io/nikhil8krishnan/pen/eNVZgB?editors=0110
+*/
 .toggle-btn {
   width: 80px;
   height: 40px;

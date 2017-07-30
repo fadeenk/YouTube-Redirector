@@ -85,7 +85,12 @@ function checkNewInstallation() {
 	var oldVersion = localStorage.getItem('version');
 
   if (!oldVersion || oldVersion < CurVer) {
-		localStorage.setItem('version', CurVer);
+    if (!oldVersion) {
+      ga('send', 'event', 'setup', 'install');
+    } else {
+      ga('send', 'event', 'setup', 'update');
+    }
+    localStorage.setItem('version', CurVer);
     chrome.tabs.create({url: "log.txt"});
 	}
 }
