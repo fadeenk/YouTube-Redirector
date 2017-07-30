@@ -1,6 +1,18 @@
 ===========================================================
 =                        Change Log                       =
 ===========================================================
+Version 2.0.0
+---------------
+-Major refactor (complete code rewrite)
+-Removed unused/dead code
+-Changed UI to be simpler and cleaner
+-Added support for synced settings (must be logged in to chrome)
+-Added support for the new Material UI youtube layout
+-Added Error capturing and reporting
+-Fixed the Update notice opening every time chrome started
+-Fixed redirect not working sometimes when youtube changes layout
+-Fixed typos in the description
+
 Version 1.1.0
 ---------------
 -Fixed the plugin not working with the new youtube
