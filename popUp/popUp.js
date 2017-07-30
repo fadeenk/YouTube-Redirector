@@ -5,11 +5,10 @@ var checkbox = parent.querySelector('input.cb-value');
 
 checkbox.checked = BGPage.featureEnabled;
 updateButtonStyles();
-BGPage.updatePageActionIcon();
 
 document.querySelector('.cb-value').addEventListener('click', clickHandler);
 
-function clickHandler(e) {
+function clickHandler() {
   updateButtonStyles();
   BGPage.saveChanges({featureEnabled: checkbox.checked});
 }

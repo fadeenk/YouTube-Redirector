@@ -6,8 +6,7 @@ setTimeout(function() {
   } else {
     needToSignIn = lookForSignIn(document.getElementsByTagName('yt-formatted-string'), 'SIGN IN');
   }
-  console.log(needToSignIn);
-  if (!needToSignIn) { //if dosent say sign in
+  if (!needToSignIn) {
     document.location = "http://www.youtube.com/feed/subscriptions";
   }
 }, 600);

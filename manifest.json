@@ -9,7 +9,7 @@
   {
     "default_icon" : "icons/off-48.png",
     "default_title" : "YouTube Redirector",
-	  "default_popup" : "popup.html"
+	  "default_popup" : "popUp/popUp.html"
   },
   "icons": {
     "48": "icons/icon-48.png",

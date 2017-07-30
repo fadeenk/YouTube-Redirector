@@ -58,7 +58,7 @@ function checkForValidUrl(tabId, changeInfo, tab) {
     chrome.pageAction.show(tabId);
     if (featureEnabled && isYoutube(tab)) {
       if(tab.url.length < 25){
-        chrome.tabs.executeScript(tab.id, {file: 'script.js', runAt: 'document_end'}, function() {
+        chrome.tabs.executeScript(tab.id, {file: 'redirect.js', runAt: 'document_end'}, function() {
           console.log('Successfully injected script into the page');
         });
       }
@@ -70,7 +70,7 @@ function checkForValidUrl(tabId, changeInfo, tab) {
 function checkNewInstallation() {
 	var CurVer = parseInt(chrome.app.getDetails().version.replace(/\./g, ''));
 	var oldVersion = localStorage.getItem('version');
-	console.log(oldVersion, CurVer);
+
   if (!oldVersion || oldVersion < CurVer) {
 		localStorage.setItem('version', CurVer);
     chrome.tabs.create({url: "log.txt"});
