@@ -2,13 +2,15 @@ Raven.config('https://03b6b508c625428f842368e57c29e108@sentry.io/197359', {
   release: chrome.app.getDetails().version,
 }).install();
 
-var BGPage = chrome.extension.getBackgroundPage();
+const BGPage = chrome.extension.getBackgroundPage();
 
-var parent = document.querySelector('.toggle-btn');
-var checkbox = parent.querySelector('input.cb-value');
-var pauseButton = document.querySelector('button#pause');
-var secondsBox = document.querySelector('input#seconds');
-var timer = document.querySelector('#timer');
+const parent = document.querySelector('.toggle-btn');
+const checkbox = parent.querySelector('input.cb-value');
+const pauseButton = document.querySelector('button#pause');
+const secondsBox = document.querySelector('input#seconds');
+const pauseControlsContainer = document.querySelector('#pauseControlsContainer');
+const timerContainer = document.querySelector('#timerContainer');
+const timer = document.querySelector('#timer');
 BGPage.ga('send', 'pageview', '/popUp.html');
 
 syncUItoState();
@@ -56,10 +58,15 @@ function updateTimer() {
   const diff = new Date(BGPage.pause.expires).getTime() - Date.now();
   if (diff <= 0) {
     checkbox.addEventListener('click', clickHandler);
+    timerContainer.style.display = 'none';
+    pauseControlsContainer.style.display = 'block';
     timer.innerHTML = '';
   } else {
     checkbox.removeEventListener('click', clickHandler);
-    timer.innerHTML = parseInt(diff / 1000) + 1;
+    timerContainer.style.display = 'block';
+    pauseControlsContainer.style.display = 'none';
+    const seconds = parseInt(diff / 1000) + 1;
+    timer.innerHTML = `Paused for ${seconds} second${seconds === 1 ? '' : 's'}.`;
   }
 }
 
