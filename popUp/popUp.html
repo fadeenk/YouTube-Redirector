@@ -5,10 +5,20 @@
     <script src="../scripts/raven.min.js"></script>
   </head>
   <body>
-    <span class="containerSpan">Enabled:</span>
-    <div class="toggle-btn">
-      <input type="checkbox" class="cb-value" />
-      <span class="round-btn"></span>
+    <div id="enableContainer">
+      <span class="containerSpan">Enabled:</span>
+      <div class="toggle-btn">
+        <input type="checkbox" class="cb-value" />
+        <span class="round-btn"></span>
+      </div>
+    </div>
+    <div id="pauseControlsContainer">
+      <button type="submit" id="pause">Pause</button> for
+      <input type="number" id="seconds" step="1" min="0" max="99"/>
+      seconds.
+    </div>
+    <div id="timerContainer">
+      <p id="timer"></p>
     </div>
     <script src="popUp.js" type="text/javascript"></script>
   </body>
