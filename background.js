@@ -12,6 +12,7 @@ ga('set', 'checkProtocolTask', function(){}); // Removes failing protocol check.
 ga('require', 'displayfeatures');
 
 var featureEnabled;
+var pause;
 var openTabs = [];
 
 checkNewInstallation();
@@ -26,17 +27,22 @@ function syncStorageArea() {
     }
     if (storage.featureEnabled === null || storage.featureEnabled === undefined) {
       storage.featureEnabled = false;
+      storage.pause = {seconds: 60 * 1000, expires: '1970-01-01T00:00:00.000Z'};
       saveChanges(storage);
     }
     featureEnabled =  storage.featureEnabled;
+    pause = storage.pause || {seconds: 60 * 1000, expires: '1970-01-01T00:00:00.000Z'};
   });
 }
 
 function saveChanges(obj) {
   // Save it using the Chrome extension storage API.
-  chrome.storage.sync.set(obj, function(err) {
-    if (err) throw err;
-    console.log('Settings saved');
+  return new Promise((resolve, reject) => {
+    chrome.storage.sync.set(obj, function(err) {
+      if (err) return reject(err);
+      console.log('Settings saved');
+      return resolve();
+    });
   });
 }
 
@@ -46,6 +52,10 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
       featureEnabled = changes[key].newValue;
       updatePageActionIcon();
     }
+    if (key === 'pause') {
+      pause = changes[key].newValue;
+      handlePaused();
+    }
   }
 });
 
@@ -54,6 +64,27 @@ function updatePageActionIcon() {
   openTabs.forEach((tabID) => {
     chrome.pageAction.setIcon({tabId: tabID, path: path});
   });
+}
+
+function handlePaused() {
+  let intervalRunning = false;
+  if (pause && pause.expires && !intervalRunning) {
+    const pauseInterval = setInterval(() => {
+      intervalRunning = true;
+      if (new Date(pause.expires).getTime() - Date.now() - 500 <= 0) {
+        clearInterval(pauseInterval);
+        intervalRunning = false;
+        featureEnabled = true;
+        updatePageActionIcon();
+        chrome.runtime.sendMessage({event: 'syncUI'});
+      } else if (featureEnabled) {
+        featureEnabled = false;
+        updatePageActionIcon();
+        chrome.runtime.sendMessage({event: 'syncUI'});
+      }
+      chrome.runtime.sendMessage({event: 'updateTimer'});
+    }, 1000)
+  }
 }
 
 function isYoutube(tab) {
@@ -67,6 +98,7 @@ function checkForValidUrl(tabId, changeInfo, tab) {
       return null;
     }
     openTabs.push(tabId);
+    handlePaused();
     updatePageActionIcon();
     chrome.pageAction.show(tabId);
     if (featureEnabled && isYoutube(tab)) {
