@@ -1,6 +1,6 @@
 {
   "name": "YouTube™ Redirector",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Automatically redirects logged in users to the subscriptions page.",
   "background": {
     "scripts": [
