@@ -21,6 +21,7 @@
   "permissions" : [
     "storage",
     "tabs",
+    "identity",
     "*://*.youtube.com/*"
   ],
   "homepage_url": "http://mrkannah.com/",

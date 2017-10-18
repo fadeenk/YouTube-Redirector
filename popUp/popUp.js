@@ -4,6 +4,8 @@ Raven.config('https://03b6b508c625428f842368e57c29e108@sentry.io/197359', {
 
 const BGPage = chrome.extension.getBackgroundPage();
 
+Raven.setUserContext(BGPage.user);
+
 const parent = document.querySelector('.toggle-btn');
 const checkbox = parent.querySelector('input.cb-value');
 const pauseButton = document.querySelector('button#pause');
