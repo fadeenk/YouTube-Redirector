@@ -1,6 +1,11 @@
 ===========================================================
 =                        Change Log                       =
 ===========================================================
+Version 2.2.0
+---------------
+-Fixed logic processing before the storage data is synced
+-Added ability to identify user experiencing the error
+
 Version 2.1.0
 ---------------
 New Feature! (Pausing functionality)
