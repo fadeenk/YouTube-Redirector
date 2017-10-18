@@ -13,13 +13,21 @@ const timerContainer = document.querySelector('#timerContainer');
 const timer = document.querySelector('#timer');
 BGPage.ga('send', 'pageview', '/popUp.html');
 
-syncUItoState();
-// the enable option is linked to the timer of the pause functionality
-// if in paused state the enable button will not have the click handler
-updateTimer();
-updateButtonStyles();
+loadPopUp();
 
-pauseButton.addEventListener('click', pause);
+function loadPopUp() {
+  if (BGPage.loaded) {
+    syncUItoState();
+    // the enable option is linked to the timer of the pause functionality
+    // if in paused state the enable button will not have the click handler
+    updateTimer();
+    updateButtonStyles();
+    
+    pauseButton.addEventListener('click', pause);
+  } else {
+    setTimeout(loadPopUp, 100);
+  }
+}
 
 function clickHandler() {
   updateButtonStyles();
