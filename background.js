@@ -14,6 +14,7 @@ ga('require', 'displayfeatures');
 var featureEnabled;
 var pause;
 var openTabs = [];
+var loaded = false;
 
 checkNewInstallation();
 syncStorageArea();
@@ -32,6 +33,7 @@ function syncStorageArea() {
     }
     featureEnabled =  storage.featureEnabled;
     pause = storage.pause || {seconds: 60 * 1000, expires: '1970-01-01T00:00:00.000Z'};
+    loaded = true;
   });
 }
 
