@@ -15,9 +15,14 @@ var featureEnabled;
 var pause;
 var openTabs = [];
 var loaded = false;
+var user;
 
 checkNewInstallation();
 syncStorageArea();
+chrome.identity.getProfileUserInfo((userInfo) => {
+  user = userInfo;
+  Raven.setUserContext(user);
+});
 
 chrome.tabs.onUpdated.addListener(checkForValidUrl);
 
